@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  catalogdb:
+    container_name: catalogdb #mongofb container name
+    restart: always
+    ports:
+      - "27017:27017" #mongo port on host machine
+    volumes:
+      - mongo_data:/data/db # the path is data/db from official mongo image documentation 
+
+  catalog.api:
+    container_name: catalog.api # appName
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017" #override .net appsettings file 
+    depends_on:
+      - catalogdb # make the app depend on catalogdb 
+    ports:
+      - "8000:80" # forward to port 8000 in local host
+ 
+# use the next command to compose and create docker image after config your yaml      
+# docker-compose -f .\.docker-compose.yml -f .\.docker-compose.override.yml up -d
