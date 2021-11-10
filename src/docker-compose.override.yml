@@ -19,5 +19,5 @@ services:
     ports:
       - "8000:80" # forward to port 8000 in local host
  
-# use the next command to compose and create docker image after config your yaml      
+# use the next command to compose and run/create docker image after config your yaml      
 # docker-compose -f .\.docker-compose.yml -f .\.docker-compose.override.yml up -d
