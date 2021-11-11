@@ -2,12 +2,18 @@ version: '3.4'
 
 services:
   catalogdb:
-    container_name: catalogdb #mongofb container name
+    container_name: catalogdb #mongodb container name
     restart: always
     ports:
       - "27017:27017" #mongo port on host machine
     volumes:
       - mongo_data:/data/db # the path is data/db from official mongo image documentation 
+
+  basketdb:
+    container_name: basketdb #mongofb container name
+    restart: always
+    ports:
+      - "6379:6379" #redis port on host machine
 
   catalog.api:
     container_name: catalog.api # appName
@@ -20,4 +26,16 @@ services:
       - "8000:80" # forward to port 8000 in local host
  
 # use the next command to compose and run/create docker image after config your yaml      
-# docker-compose -f .\.docker-compose.yml -f .\.docker-compose.override.yml up -d
+# docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
+
+
+  basket.api:
+    container_name: basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=basketdb:6379"   #override .net appsettings file to add connection for redis 
+    depends_on:
+      - basketdb
+    ports:
+      - "8001:80"
+

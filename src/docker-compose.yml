@@ -4,11 +4,20 @@ services:
   catalogdb:
     image: mongo #official name of mongo image
   
+  basketdb:
+    image: redis:alpine #official name of redis image
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
       context: .
       dockerfile: Services/Catalog/Catalog.API/Dockerfile
+
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: Services/Basket/Basket.API/Dockerfile
 
 volumes: #data storage out of the container , locate in host file system 
   mongo_data: 
