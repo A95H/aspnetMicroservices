@@ -6,3 +6,5 @@ Step 2 : Docker
 	 * you can enter to redis terminal using this command docker exec -it <name of your container> redis /bin/bash
 
 Step 3 : Create Entities
+
+Step 4 : Add Redis
