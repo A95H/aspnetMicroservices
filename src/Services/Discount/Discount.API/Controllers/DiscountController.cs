@@ -19,9 +19,9 @@ namespace Discount.API.Controllers
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        [HttpGet("{productName}", Name = "GetDiscount")]
+        [HttpGet("/{productName}", Name = "GetDiscount")]
         [ProducesResponseType(typeof(Coupon), StatusCodes.Status200OK)]
-        public async Task<ActionResult<Coupon>> GetDiscount(string productName)
+        public async Task<ActionResult<Coupon>> GetDiscount([FromQuery] string productName)
         {
             return Ok(await _repository.GetDiscount(productName));
         }
@@ -33,7 +33,7 @@ namespace Discount.API.Controllers
 
             var created = await _repository.CreateDiscount(coupon);
             if (created)
-                return CreatedAtRoute("GetDiscount", new { coupon.ProductName });
+                return CreatedAtRoute(nameof(GetDiscount), new { productName = coupon.ProductName }, coupon);
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
 
