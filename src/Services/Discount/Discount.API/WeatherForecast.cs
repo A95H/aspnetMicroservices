@@ -1,6 +1,6 @@
 using System;
 
-namespace Baskey.API
+namespace Discount.API
 {
     public class WeatherForecast
     {

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Baskey.API
+namespace Discount.API
 {
     public class Program
     {
