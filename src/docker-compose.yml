@@ -7,6 +7,9 @@ services:
   basketdb:
     image: redis:alpine #official name of redis image
 
+  dicsountdb:
+    image: "postgres"  #official name of postgres image
+
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
     build:
@@ -21,3 +24,4 @@ services:
 
 volumes: #data storage out of the container , locate in host file system 
   mongo_data: 
+  postgres_data:

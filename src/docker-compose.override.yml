@@ -1,6 +1,7 @@
 version: '3.4'
 
 services:
+  #Configre catalogdb  
   catalogdb:
     container_name: catalogdb #mongodb container name
     restart: always
@@ -9,12 +10,26 @@ services:
     volumes:
       - mongo_data:/data/db # the path is data/db from official mongo image documentation 
 
+  #Configre basketdb   
   basketdb:
-    container_name: basketdb #mongofb container name
+    container_name: basketdb #redis container name
     restart: always
     ports:
       - "6379:6379" #redis port on host machine
 
+  #Configre discountdb   
+  discountdb:
+    container_name: discountdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin1234
+      - POSTGRES_DB=discountdb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+   
   catalog.api:
     container_name: catalog.api # appName
     environment:
