@@ -1,0 +1,10 @@
+﻿Step 1 : init project
+	init project and adjust port number to 5001
+
+Step 2 : Docker
+	 * install redis image on docker 
+	 * you can enter to redis terminal using this command docker exec -it <name of your container> redis /bin/bash
+
+Step 3 : Create Entities
+
+Step 4 : Add Redis
