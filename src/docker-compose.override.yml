@@ -17,7 +17,7 @@ services:
     ports:
       - "6379:6379" #redis port on host machine
 
-  #Configre discountdb   
+  #Configre discountdb using PostgreSql
   discountdb:
     container_name: discountdb
     environment:
@@ -28,8 +28,21 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data 
+      - postgres_data:/var/lib/postgresql/data/
+
+  #Configre PGAdmin #pgadmin is management app for postgresql
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
+    restart: always
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin 
    
+
   catalog.api:
     container_name: catalog.api # appName
     environment:

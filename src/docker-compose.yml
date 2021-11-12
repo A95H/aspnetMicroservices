@@ -7,8 +7,11 @@ services:
   basketdb:
     image: redis:alpine #official name of redis image
 
-  dicsountdb:
+  discountdb:
     image: "postgres"  #official name of postgres image
+  
+  pgadmin: #pgadmin is management app for postgresql
+    image: dpage/pgadmin4 #official name of pgadmin image
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
@@ -25,3 +28,4 @@ services:
 volumes: #data storage out of the container , locate in host file system 
   mongo_data: 
   postgres_data:
+  pgadmin_data:
