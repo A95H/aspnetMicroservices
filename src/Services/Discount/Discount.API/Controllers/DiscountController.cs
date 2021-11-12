@@ -21,7 +21,7 @@ namespace Discount.API.Controllers
 
         [HttpGet("/{productName}", Name = "GetDiscount")]
         [ProducesResponseType(typeof(Coupon), StatusCodes.Status200OK)]
-        public async Task<ActionResult<Coupon>> GetDiscount([FromQuery] string productName)
+        public async Task<ActionResult<Coupon>> GetDiscount(string productName)
         {
             return Ok(await _repository.GetDiscount(productName));
         }
