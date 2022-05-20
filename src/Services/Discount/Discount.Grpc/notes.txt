@@ -1,0 +1,8 @@
+﻿Step 1 : init project
+	create grpc
+
+Step 2 : create discount proto file in protos folder
+Step 3 : set the proto compiler in the file properties and set it to server only
+Step 3 : build project > it will generate discountGrpc c# file in this path obj\Debug\net5.0\Protos\DiscountGrpc.cs
+Step 4 : create discount service file and inherit from generated grpc class
+Step 5 : override methods in discount service to manuplate data and requests
