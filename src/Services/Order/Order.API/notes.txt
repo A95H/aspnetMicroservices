@@ -1,0 +1,1 @@
+﻿Step 1 : Create Class libararies for 3 layers (Application,Domain and infrastructure) in order solution folder 
