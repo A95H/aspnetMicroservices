@@ -15,3 +15,7 @@ Setp 10 : build client project (Basket.API)
 Step 11 : create service file to communicate with Grpc
 Step 12 : use this service in your controller
 step 13 : configue dependencies in startup file and connectionStrings in appSettings
+
+//docker
+Step 14 : create docker file by clicking on the project and add "Container Orchestrator Support"
+Step 15 : modify in docker-compose.override.yml in docker-compose
