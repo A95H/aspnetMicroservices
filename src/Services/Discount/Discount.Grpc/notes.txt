@@ -1,0 +1,21 @@
+﻿Step 1 : init project
+	create grpc
+
+Step 2 : create discount proto file in protos folder
+Step 3 : set the proto compiler in the file properties and set it to server only
+Step 3 : build project > it will generate discountGrpc c# file in this path obj\Debug\net5.0\Protos\DiscountGrpc.cs
+Step 4 : create discount service file and inherit from generated grpc class
+Step 5 : override methods in discount service to manipulate data and requests
+Step 6 : build the project
+
+Step 7 : nav to the client service (Basket.API in our example)
+Step 8 : in the client project add new Connected Service (right click > add > Connected Service)
+Step 9 : Add Grpc service then select proto file (Discount.Grpc\Protos\discount.proto in our example) and set as client
+Setp 10 : build client project (Basket.API)
+Step 11 : create service file to communicate with Grpc
+Step 12 : use this service in your controller
+step 13 : configue dependencies in startup file and connectionStrings in appSettings
+
+//docker
+Step 14 : create docker file by clicking on the project and add "Container Orchestrator Support"
+Step 15 : modify in docker-compose.override.yml in docker-compose

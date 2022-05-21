@@ -56,12 +56,15 @@ services:
 # use the next command to compose and run/create docker image after config your yaml      
 # docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up -d
 
+# rebuild all docker images by this command 
+# docker-compose -f .\docker-compose.yml -f .\docker-compose.override.yml up --build
 
   basket.api:
     container_name: basket.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=basketdb:6379"   #override .net appsettings file to add connection for redis 
+      - "GrpcSettings:DiscountUrl=discount.grpc"
     depends_on:
       - basketdb
     ports:
@@ -72,9 +75,22 @@ services:
     container_name: discount.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=server=localhost;Port=5432;Database=DiscountDb;user Id=admin;Password=admin1234;"
+      #NOTE : On Connection String in Docker Container, the server should be container name of the database insetead of localhost
+      - "DatabaseSettings:ConnectionString=server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
     depends_on:
       - discountdb
     ports:
       - "8002:80"
+
+
+  discount.grpc:
+    container_name: discount.grpc
+
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=server=discountdb;Port=5432;Database=DiscountDb;User Id=admin;Password=admin1234;"
+    depends_on:
+      - discountdb
+    ports:
+      - "80"
 
