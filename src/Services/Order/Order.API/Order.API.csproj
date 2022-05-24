@@ -13,5 +13,9 @@
     <ProjectReference Include="..\Order.Infrastrucutre\Order.Infrastrucutre.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Ad\" />
+  </ItemGroup>
+
 
 </Project>
