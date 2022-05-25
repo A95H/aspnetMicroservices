@@ -30,6 +30,17 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
+#Configre orderdb using Microsoft Sql Server
+  orderdb:
+    container_name: orderdb
+    environment: #set environment flags as MSSql Configuration in https://hub.docker.com/_/microsoft-mssql-server
+        SA_PASSWORD: "admin1234"
+        ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+        - "1433:1433"
+
+
   #Configre PGAdmin #pgadmin is management app for postgresql
   pgadmin:
     container_name: pgadmin

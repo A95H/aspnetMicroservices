@@ -9,6 +9,9 @@ services:
 
   discountdb:
     image: "postgres"  #official name of postgres image
+
+  orderdb:
+    image: "mcr.microsoft.com/mssql/server:2017-latest" #official name of MSSql server image
   
   pgadmin: #pgadmin is management app for postgresql
     image: dpage/pgadmin4 #official name of pgadmin image
