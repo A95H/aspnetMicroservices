@@ -1,11 +1,9 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Order.API.Extensions;
+using Order.Infrastrucutre.Persistence;
 
 namespace Order.API
 {
@@ -13,7 +11,17 @@ namespace Order.API
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            //use this custom extenstion to migrate DB on Docker
+            host.MigrateDatabase<OrderContext>((context, services) =>
+            {
+                var logger = services.GetService<ILogger<OrderContextSeed>>();
+                OrderContextSeed
+                    .SeedAsync(context, logger)
+                    .Wait();
+            });
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
