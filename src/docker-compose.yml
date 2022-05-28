@@ -40,9 +40,16 @@ services:
       context: .
       dockerfile: Services/Discount/Discount.Grpc/Dockerfile
 
+  order.api:
+    image: ${DOCKER_REGISTRY-}orderapi
+    build:
+      context: .
+      dockerfile: Services/Order/Order.API/Dockerfile
+
 volumes: #data storage out of the container , locate in host file system 
   mongo_data: 
   postgres_data:
   pgadmin_data:
+
 
 
