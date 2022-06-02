@@ -1,0 +1,3 @@
+﻿Step 1 : Create Class libararies for 3 layers (Application,Domain and infrastructure) in order solution folder 
+Step 2 : Develop Order Domain Layer
+Step 3 : Develop Order Application Layer
