@@ -41,6 +41,7 @@ namespace Basket.API
             
             // General Configuration
             services.AddScoped<IBasketRepository, BasketRepository>();
+            services.AddAutoMapper(typeof(Startup));
 
             // MassTransit-RqbbitMQ Configuration
             services.AddMassTransit(config =>
