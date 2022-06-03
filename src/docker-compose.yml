@@ -12,6 +12,9 @@ services:
 
   orderdb:
     image: "mcr.microsoft.com/mssql/server:2017-latest" #official name of MSSql server image
+
+  rabbitmq:
+    image: "rabbitmq:3.8-management-alpine"
   
   pgadmin: #pgadmin is management app for postgresql
     image: dpage/pgadmin4 #official name of pgadmin image
